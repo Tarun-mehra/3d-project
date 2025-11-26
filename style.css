@@ -1,12 +1,17 @@
-/*
- * ----------------------------------------------------
- * Reset and Base Styles
- * ----------------------------------------------------
- */
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -15,20 +20,21 @@ body {
     color: white;
     min-height: 100vh;
     line-height: 1.5;
-    /* FIX: Prevents horizontal scrolling caused by off-screen elements like the 3D robot */
-    overflow-x: hidden; 
 }
 
-/* Hamburger Menu Styles */
+/* ============================================
+   HAMBURGER MENU STYLES
+   ============================================ */
+
 .hamburger-menu {
-    display: none; /* Hidden by default on larger screens */
+    display: none;
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
     height: 25px;
     cursor: pointer;
-    z-index: 100; /* Ensure it's above other content */
-    position: relative; /* For animation */
+    z-index: 100;
+    position: relative;
 }
 
 .hamburger-menu .bar {
@@ -39,36 +45,73 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-/* Hamburger menu active state */
-.hamburger-menu.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
 .hamburger-menu.active .bar:nth-child(1) {
     transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
 }
 
 .hamburger-menu.active .bar:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
 }
 
-/* Mobile Nav Container Styles */
+/* ============================================
+   MOBILE NAV CONTAINER
+   ============================================ */
+
 .mobile-nav-container {
-    display: flex; /* Always display flex */
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 70vw;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 99;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.mobile-nav-container.active {
+    right: 0;
+    display: flex;
 }
 
 .mobile-nav-container nav {
     display: flex;
+    flex-direction: column;
     gap: 2rem;
+    align-items: center;
 }
 
-/*
- * ----------------------------------------------------
- * Gradient and Blur Effects
- * ----------------------------------------------------
- */
+.mobile-nav-container nav a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-container nav a:active {
+    color: #afabab;
+}
+
+.mobile-nav-container .btn {
+    display: block;
+    margin-top: 1rem;
+}
+
+/* ============================================
+   GRADIENT & BACKGROUND EFFECTS
+   ============================================ */
+
 .image-gradient {
     position: absolute;
     top: 0;
@@ -76,6 +119,7 @@ body {
     left: 0;
     opacity: 0.5;
     z-index: -1;
+    max-width: 100%;
 }
 
 .layer-blur {
@@ -84,15 +128,15 @@ body {
     position: absolute;
     top: -20%;
     right: 0%;
-    box-shadow: 0 0 700px 15px white;
+    box-shadow: 0 0 700px 15px rgba(255, 255, 255, 0.3);
     z-index: -1;
+    pointer-events: none;
 }
 
-/*
- * ----------------------------------------------------
- * Layout and Navigation
- * ----------------------------------------------------
- */
+/* ============================================
+   LAYOUT & NAVIGATION
+   ============================================ */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -100,19 +144,27 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.Logo {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.2rem;
 }
 
 nav {
     display: flex;
     gap: 2rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 nav a {
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.2s ease;
-    color: inherit;
+    color: white;
     letter-spacing: 0.1rem;
 }
 
@@ -120,7 +172,10 @@ nav a:hover {
     color: #afabab;
 }
 
-/* Base Button Style */
+/* ============================================
+   BUTTONS
+   ============================================ */
+
 .btn {
     padding: 0.8rem 2rem;
     background-color: white;
@@ -130,86 +185,18 @@ nav a:hover {
     font-size: 1rem;
     font-weight: 500;
     border-radius: 300px;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
 }
 
 .btn:hover {
     background-color: #afabab;
 }
 
-/*
- * ----------------------------------------------------
- * Main Content and Tag Box
- * ----------------------------------------------------
- */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem; 
-    min-height: 90vh; /* Adjust for better content visibility */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-}
-
-/* Tag Box Styles */
-.tag-box{
-    position: relative;
-    width: 18rem;
-    height: 2.5rem;
-    border: 1px solid white;
-    border-radius: 50px;
-    /* FIX: Corrected gradient color format */
-    background: linear-gradient(to right, #a1a1a1, #1A001A); 
-    background-size: 200%;
-    animation: animateGradient 2.5s linear infinite;
-    /* FIX: Corrected box-shadow color format */
-    box-shadow: 0 0 15px 1px rgba(255, 0, 204, 0.3);
-}
-
-/* FIX: Added missing @keyframes content and corrected name */
-@keyframes animateGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
-.tag-box .tag {
-    padding: 0 1rem;
-    line-height: 2.5rem; 
-    letter-spacing: 0.1rem;
-    display: inline-block;
-}
-
-/* H1 Styles */
-.content h1 {
-    font-size: 5rem;
-    margin-top: 2rem;
-    line-height: 1.1;
-    font-weight: 800;
-}
-
-.description {
-    max-width: 40rem;
-    margin-top: 1rem;
-    opacity: 0.8;
-}
-
-/* Action Buttons */
-.buttons {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1rem;
-}
-
 .btn-primary {
-    /* Uses the base .btn styles */
+    /* inherits .btn styles */
 }
 
-/* FIX: Styles for the secondary button */
 .btn-secondary {
     background-color: transparent;
     border: 1px solid white;
@@ -221,142 +208,364 @@ main {
     color: black;
 }
 
-/*
- * ----------------------------------------------------
- * 3D Robot Positioning
- * ----------------------------------------------------
- */
-.robot-3d{
-    position: absolute;
-    top: 0;
-    right: -30%; /* Off-screen positioning */
-    z-index: -2; /* Ensure it stays behind the text */
+/* ============================================
+   MAIN CONTENT & HERO SECTION
+   ============================================ */
+
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-/*
- * ----------------------------------------------------
- * Media Queries
- * ----------------------------------------------------
- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+}
 
-@media (max-width: 1300px){
-    .container{
+.content {
+    max-width: 50%;
+    width: 100%;
+}
+
+.tag-box {
+    position: relative;
+    width: 18rem;
+    height: 2.5rem;
+    border: 1px solid white;
+    border-radius: 50px;
+    background: linear-gradient(to right, #a1a1a1, #1A001A);
+    background-size: 200%;
+    animation: animateGradient 2.5s linear infinite;
+    box-shadow: 0 0 15px 1px rgba(255, 0, 204, 0.3);
+}
+
+@keyframes animateGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.tag {
+    padding: 0 1rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.1rem;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.content h1 {
+    font-size: 5rem;
+    margin-top: 2rem;
+    line-height: 1.1;
+    font-weight: 800;
+    word-wrap: break-word;
+}
+
+.content h1 .subheading {
+    font-size: 1.2em;
+    font-weight: 400;
+    display: block;
+}
+
+.description {
+    max-width: 40rem;
+    margin-top: 1rem;
+    opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   3D ROBOT POSITIONING
+   ============================================ */
+
+.robot-3d {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    z-index: -2;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* ============================================
+   CYBER SECTION (SCROLLING TEXT)
+   ============================================ */
+
+#cyber-section {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    overflow-x: hidden;
+}
+
+#main {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    background: linear-gradient(135deg, hsl(270, 77%, 40%), hsl(240, 70%, 20%));
+    overflow-x: hidden;
+}
+
+#page {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.loop {
+    display: flex;
+    position: absolute;
+    top: 35%;
+    width: 200%;
+    max-width: 200%;
+    white-space: nowrap;
+    font-size: clamp(28px, 8vw, 80px);
+    line-height: 1;
+    animation: scrollText 20s linear infinite;
+    left: 0;
+}
+
+.loop h1 {
+    font-weight: 400;
+    padding-right: 50px;
+    flex-shrink: 0;
+}
+
+.loop span {
+    -webkit-text-stroke: 1px #000;
+    color: transparent;
+    font-weight: 600;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+#page h3 {
+    position: absolute;
+    top: 60%;
+    left: 5%;
+    color: #999;
+    font-size: clamp(12px, 2.5vw, 22px);
+    font-weight: 400;
+    max-width: 90%;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+#page h4 {
+    position: absolute;
+    top: 70%;
+    left: 20px;
+    font-size: clamp(12px, 3vw, 20px);
+    font-weight: 500;
+    color: #666;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN (TABLET)
+   ============================================ */
+
+@media (max-width: 1300px) {
+    .container {
         padding: 1rem 0.5rem;
     }
-    /* Adjusted margin to keep content visible when robot scales up */
-    .content{
+
+    .content {
         margin-top: 5rem;
     }
 
-    .robot-3d{
-        scale: 0.8;
-        right: 2% ;
+    .robot-3d {
+        transform: scale(0.8);
+        right: 2%;
         top: -20%;
     }
 }
 
-@media (max-width: 768px){
-    /* --- General Layout & Navigation --- */
-    .container{
-        padding: 1rem 0.5rem;
-        position: relative; /* Needed for absolute positioning of mobile menu */
-        justify-content: space-between; /* Ensure logo and hamburger are spaced */
+/* ============================================
+   RESPONSIVE DESIGN (MOBILE)
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* --- Navigation & Header --- */
+    .container {
+        padding: 1rem;
+        position: relative;
+        justify-content: space-between;
     }
 
-    /* Show hamburger menu */
+    .Logo {
+        font-size: 1.8rem;
+        order: 1;
+    }
+
     .hamburger-menu {
         display: flex;
-        order: 2; /* Position it after the logo */
+        order: 2;
     }
 
-    /* Hide the regular nav and button on mobile */
-    nav, .btn:not(.mobile-nav-container .btn) { /* Hide original nav and button outside mobile container */
+    nav {
         display: none;
     }
 
-    /* Mobile Nav Container Styles */
-    .mobile-nav-container {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Start off-screen */
-        width: 70%; /* Adjust as needed */
-        height: 100%;
-        background-color: #1a1a1a; /* Dark background for the menu */
-        flex-direction: column;
+    .container .btn {
+        display: none;
+    }
+
+    /* --- Main Content --- */
+    main {
+        padding: 1rem;
+        min-height: auto;
         justify-content: center;
         align-items: center;
-        transition: right 0.3s ease-in-out;
-        z-index: 99; /* Below hamburger, above content */
-        gap: 3rem; /* Space between nav and button */
-        display: none; /* Hidden by default */
     }
 
-    .mobile-nav-container.active {
-        right: 0; /* Slide in */
-        display: flex; /* Show when active */
-    }
-
-    .mobile-nav-container nav {
-        flex-direction: column;
-        gap: 2rem;
-        display: flex; /* Ensure nav links inside mobile container are visible */
-    }
-
-    .mobile-nav-container nav a {
-        font-size: 1.5rem; /* Larger links for mobile */
-    }
-
-    .mobile-nav-container .btn {
-        margin-top: 1rem; /* Space from nav links */
-        display: block; /* Ensure button inside mobile container is visible */
-    }
-
-    .Logo{
-        font-size: 1.8rem; /* Smaller Logo */
-        order: 1; /* Position it before the hamburger */
-    }
-    /* The original .btn styles outside the mobile menu are hidden */
-    
-    /* --- Main Content Positioning --- */
-    .content{
-        margin-top: 15rem; /* Reduced top margin to bring content up */
-        margin-left: 0; /* Remove fixed left margin */
-        text-align: center; /* Center align all content */
+    .content {
         max-width: 100%;
-        padding: 0 1rem; /* Add horizontal padding for edges */
+        margin-top: 6rem;
+        text-align: center;
     }
 
-    /* --- Tag Box and Heading --- */
-    .tag-box{
-        width: 12rem;
-        margin: 0 auto; /* Center the tag box */
+    .content h1 {
+        font-size: 2rem;
+        margin-top: 1rem;
     }
-    .content h1{
-        font-size: 2.5rem; /* Smaller, readable main heading */
-    }
-    
-    .description{
-        font-size: 1rem;
+
+    .description {
         max-width: 90%;
-        margin: 1rem auto; /* Center description */
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.95rem;
     }
 
-    /* --- Buttons --- */
+    .tag-box {
+        width: 100%;
+        max-width: 12rem;
+        margin: 0 auto;
+    }
+
     .buttons {
-        justify-content: center; /* Center the buttons group */
-        gap: 0.5rem; /* Slightly smaller gap */
-    }
-    .btn-primary, .btn-secondary {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
     }
 
-    /* --- 3D Robot Positioning --- */
-    .robot-3d{
-        scale: 0.5;
-        right: 0; /* Keep it anchored to the right edge */
-        top: -15%; /* Lift it slightly higher */
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        flex: 1;
+        max-width: 150px;
+    }
+
+    /* --- 3D Robot --- */
+    .robot-3d {
+        position: static;
+        width: 100%;
+        height: 300px;
+        margin-top: 2rem;
+        z-index: 1;
+    }
+
+    /* --- Cyber Section --- */
+    .loop {
+        font-size: clamp(20px, 10vw, 34px);
+        top: 40%;
+        padding: 0 1rem;
+    }
+
+    .loop h1 {
+        padding-right: 30px;
+    }
+
+    #page h3 {
+        top: 65%;
+        left: 5%;
+        font-size: clamp(11px, 3.5vw, 16px);
+    }
+
+    #page h4 {
+        top: 75%;
+        left: 5%;
+        font-size: clamp(11px, 4vw, 15px);
     }
 }
 
+/* ============================================
+   EXTRA SMALL DEVICES
+   ============================================ */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.8rem;
+    }
+
+    .Logo {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 0.5rem;
+    }
+
+    .content h1 {
+        font-size: 1.5rem;
+    }
+
+    .tag-box {
+        width: 100%;
+        max-width: 10rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .robot-3d {
+        height: 250px;
+    }
+
+    .loop {
+        top: 35%;
+    }
 }
