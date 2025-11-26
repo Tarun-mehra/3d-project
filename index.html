@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-<body>
+<body id="main-body">
 
     <img class="image-gradient" src="gradient.png" alt="gradient">
     <div class="layer-blur"></div>
@@ -15,14 +15,22 @@
     <div class="container" data-aos="fade-down" data-aos-duration="1000"> 
         <h1 class="Logo">TARUN</h1>
 
-        <nav>
-           <a href="#" data-aos="fade-down" data-aos-delay="200">Home</a>
-           <a href="#" data-aos="fade-down" data-aos-delay="300">About</a>
-           <a href="#" data-aos="fade-down" data-aos-delay="400">Contact</a>
-           <a href="#" data-aos="fade-down" data-aos-delay="500">Posts</a>
-        </nav>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
 
-        <button class="btn" data-aos="fade-down" data-aos-delay="600">RESUME</button>
+        <div class="mobile-nav-container">
+            <nav>
+               <a href="#" data-aos="fade-down" data-aos-delay="200">Home</a>
+               <a href="#" data-aos="fade-down" data-aos-delay="300">About</a>
+               <a href="#" data-aos="fade-down" data-aos-delay="400">Contact</a>
+               <a href="#" data-aos="fade-down" data-aos-delay="500">Posts</a>
+            </nav>
+
+            <button class="btn" data-aos="fade-down" data-aos-delay="600">RESUME</button>
+        </div>
     </div>
     
     <div class="content-wrapper"> 
@@ -53,6 +61,7 @@
           once: true // Ensures animation only happens once when scrolled into view
       });
     </script>
+    <script src="script.js"></script>
     <section id="cyber-section" style="position:relative; width:100%; height:auto;">
 
 <!-- ========================= CSS ========================= -->
