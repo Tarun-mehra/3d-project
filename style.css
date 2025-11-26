@@ -1,0 +1,315 @@
+/*
+ * ----------------------------------------------------
+ * Reset and Base Styles
+ * ----------------------------------------------------
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    line-height: 1.5;
+    /* FIX: Prevents horizontal scrolling caused by off-screen elements like the 3D robot */
+    overflow-x: hidden; 
+}
+
+/*
+ * ----------------------------------------------------
+ * Gradient and Blur Effects
+ * ----------------------------------------------------
+ */
+.image-gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.layer-blur {
+    height: 0;
+    width: 30rem;
+    position: absolute;
+    top: -20%;
+    right: 0%;
+    box-shadow: 0 0 700px 15px white;
+    z-index: -1;
+}
+
+/*
+ * ----------------------------------------------------
+ * Layout and Navigation
+ * ----------------------------------------------------
+ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+    color: inherit;
+    letter-spacing: 0.1rem;
+}
+
+nav a:hover {
+    color: #afabab;
+}
+
+/* Base Button Style */
+.btn {
+    padding: 0.8rem 2rem;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 300px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #afabab;
+}
+
+/*
+ * ----------------------------------------------------
+ * Main Content and Tag Box
+ * ----------------------------------------------------
+ */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem; 
+    min-height: 90vh; /* Adjust for better content visibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+/* Tag Box Styles */
+.tag-box{
+    position: relative;
+    width: 18rem;
+    height: 2.5rem;
+    border: 1px solid white;
+    border-radius: 50px;
+    /* FIX: Corrected gradient color format */
+    background: linear-gradient(to right, #a1a1a1, #1A001A); 
+    background-size: 200%;
+    animation: animateGradient 2.5s linear infinite;
+    /* FIX: Corrected box-shadow color format */
+    box-shadow: 0 0 15px 1px rgba(255, 0, 204, 0.3);
+}
+
+/* FIX: Added missing @keyframes content and corrected name */
+@keyframes animateGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.tag-box .tag {
+    padding: 0 1rem;
+    line-height: 2.5rem; 
+    letter-spacing: 0.1rem;
+    display: inline-block;
+}
+
+/* H1 Styles */
+.content h1 {
+    font-size: 5rem;
+    margin-top: 2rem;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.description {
+    max-width: 40rem;
+    margin-top: 1rem;
+    opacity: 0.8;
+}
+
+/* Action Buttons */
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary {
+    /* Uses the base .btn styles */
+}
+
+/* FIX: Styles for the secondary button */
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: black;
+}
+
+/*
+ * ----------------------------------------------------
+ * 3D Robot Positioning
+ * ----------------------------------------------------
+ */
+.robot-3d{
+    position: absolute;
+    top: 0;
+    right: -30%; /* Off-screen positioning */
+    z-index: -2; /* Ensure it stays behind the text */
+}
+
+/*
+ * ----------------------------------------------------
+ * Media Queries
+ * ----------------------------------------------------
+ */
+
+@media (max-width: 1300px){
+    .container{
+        padding: 1rem 0.5rem;
+    }
+    /* Adjusted margin to keep content visible when robot scales up */
+    .content{
+        margin-top: 5rem;
+    }
+
+    .robot-3d{
+        scale: 0.8;
+        right: 2% ;
+        top: -20%;
+    }
+}
+
+@media (max-width: 768px){
+    .container{
+        padding: 1rem 0.5rem;
+    }
+    nav{
+        display: none;
+    }
+    .Logo{
+        font-size: 2rem;
+    }
+    .btn{
+        padding: 0.6rem 1.5rem;
+    }
+    
+    .content{
+        margin-top: 25rem;
+        margin-left: 5%; /* Adjusted margin */
+        max-width: 90%;
+    }
+    
+    .robot-3d{
+        scale: 0.5;
+        right: -5%; /* Slightly adjust to keep it visible */
+        top: -25%;
+    }
+    .tag-box{
+        width: 12rem;
+    }
+    .content h1{
+        font-size: 2.5rem;
+    }
+    
+    .description{
+        font-size: 1rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    /*
+ * ----------------------------------------------------
+ * Mobile Styles (max-width: 768px)
+ * ----------------------------------------------------
+ */
+@media (max-width: 768px){
+    /* --- General Layout & Navigation --- */
+    .container{
+        padding: 1rem 0.5rem;
+    }
+    nav{
+        display: none; /* Hide navigation links */
+    }
+    .Logo{
+        font-size: 1.8rem; /* Smaller Logo */
+    }
+    .btn{
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* --- Main Content Positioning --- */
+    .content{
+        margin-top: 15rem; /* Reduced top margin to bring content up */
+        margin-left: 0; /* Remove fixed left margin */
+        text-align: center; /* Center align all content */
+        max-width: 100%;
+        padding: 0 1rem; /* Add horizontal padding for edges */
+    }
+
+    /* --- Tag Box and Heading --- */
+    .tag-box{
+        width: 12rem;
+        margin: 0 auto; /* Center the tag box */
+    }
+    .content h1{
+        font-size: 2.5rem; /* Smaller, readable main heading */
+    }
+    
+    .description{
+        font-size: 1rem;
+        max-width: 90%;
+        margin: 1rem auto; /* Center description */
+    }
+
+    /* --- Buttons --- */
+    .buttons {
+        justify-content: center; /* Center the buttons group */
+        gap: 0.5rem; /* Slightly smaller gap */
+    }
+    .btn-primary, .btn-secondary {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* --- 3D Robot Positioning --- */
+    .robot-3d{
+        scale: 0.5;
+        right: 0; /* Keep it anchored to the right edge */
+        top: -15%; /* Lift it slightly higher */
+    }
+}
+}
